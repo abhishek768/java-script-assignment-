@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">JavaScript Calculator</h2>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label for="num1">Number 1:</label>
+        <input type="number" class="form-control" id="num1">
+      </div>
+    </div>
+    <div class="col">
+    <label for="operator">Operator:</label>
+    <select class="form-control" id="operator">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select>
+        
+      </div>
+      <div class="col">
+      <label for="num2">Number 2:</label>
+      <input type="number" class="form-control" id="num2">
+      </div>
+      <button type="button" class="btn btn-primary btn-block" onclick="Submit()">Submit</button>
+      <div class="row">
+        <div class="col">
+       <div class="form-group mt-3">
+        <label for="Answer">Answer:</label>
+        <input type="text" class="form-control" id="Answer" readonly>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<script>
+  function Submit() {
+    // Get input values
+    var num1 = parseFloat(document.getElementById("num1").value);
+    var num2 = parseFloat(document.getElementById("num2").value);
+    var operator = document.getElementById("operator").value;
+    
+    // Perform calculation
+    var Answer;
+    switch (operator) {
+      case '+':
+        Answer = num1 + num2;
+        break;
+      case '-':
+        Answer = num1 - num2;
+        break;
+      case '*':
+        Answer = num1 * num2;
+        break;
+      case '/':
+        if (num2 != 0) {
+          Answer = num1 / num2;
+        } else {
+          alert("Error: Division by zero!");
+          return;
+        }
+        break;
+      default:
+        alert("Error: Invalid operator!");
+        return;
+    }
+    
+    // Display Answer
+    document.getElementById("Answer").value = Answer;
+  }
+  
+  // Reset Answer when any input changes
+  document.getElementById("num1").addEventListener("input", function() {
+    document.getElementById("Answer").value = "";
+  });
+  document.getElementById("num2").addEventListener("input", function() {
+    document.getElementById("Answer").value = "";
+  });
+  document.getElementById("operator").addEventListener("change", function() {
+    document.getElementById("Answer").value = "";
+  });
+</script>
+
+</body>
+</html>
